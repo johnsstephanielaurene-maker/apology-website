@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I'm Sorry ❤</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      color: #333;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    .hero {
+      padding: 80px 20px;
+    }
+
+    .hero h1 {
+      font-size: 3em;
+      color: #e91e63;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 1.3em;
+      margin: 10px auto 30px;
+      max-width: 600px;
+    }
+
+    .countdown, .days-missed {
+      margin: 20px auto;
+      font-size: 1.2em;
+      background: white;
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 40px 0;
+    }
+
+    .gallery img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      margin: 10px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .message {
+      font-size: 1.3em;
+      margin: 40px 20px;
+      color: #444;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      white-space: pre-line;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      color: white;
+      background: #e91e63;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: 0.3s;
+      margin-top: 20px;
+    }
+
+    .button:hover {
+      background: #c2185b;
+    }
+
+    #music-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 10px;
+      background: #e91e63;
+      color: white;
+      cursor: pointer;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-200px) scale(1.5); opacity: 0; }
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 24px;
+      color: #e91e63;
+      animation: floatUp 1.5s ease forwards;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Music -->
+  <audio id="bg-music" autoplay loop>
+    <source src="until-i-found-her.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Music Control Button -->
+  <button id="music-button" onclick="toggleMusic()">Pause/Play Music</button>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <h1>I’m Sorry ❤</h1>
+    <p>Hey love, I want to share my heart with you honestly.</p>
+  </div>
+
+  <!-- Countdown Section -->
+  <div class="countdown">
+    <p>It’s been <span id="time"></span> since I realized how much I hurt you.</p>
+  </div>
+
+  <!-- Days Missed Section -->
+  <div class="days-missed">
+    <p>It’s been <span id="missed-days"></span> days since the fight… and I’ve missed you every single one.</p>
+  </div>
+
+  <!-- Photo Memories Section -->
+  <div class="gallery">
+    <img src="https://placekitten.com/300/300" alt="Memory 1">
+    <img src="https://placekitten.com/301/301" alt="Memory 2">
+    <img src="https://placekitten.com/302/302" alt="Memory 3">
+    <img src="https://placekitten.com/303/303" alt="Memory 4">
+  </div>
+
+  <!-- Romantic Apology Message Section -->
+  <div class="message">
+    <p>
+My love,
+I read your message, and it touched me deeply. I can feel the honesty and vulnerability in your words, and it breaks my heart knowing that I was the one who caused you pain. I never meant to hurt you, but I see now how my words cut you in a way I didn’t realize. For that, I’m truly sorry.
+
+The truth is, I admire the way you love me. You trust me enough to show me your softer, more vulnerable side — something not everyone gets to see. That’s such a precious part of you, and instead of cherishing it, I ended up wounding it. Please forgive me for that.
+
+You mean so much to me. I don’t ever want you to feel broken down by me, or to doubt the love I have for you. I want to be someone who lifts you up, encourages you, and makes you feel safe to be exactly who you are. Your love is a gift, and I don’t take it lightly.
+
+I promise to be more mindful, more patient, and more careful with my words. I love you deeply, and I want us to keep moving forward together, stronger than before. Thank you for still choosing us, even when I fall short.
+
+Always yours,
+Stephanie ❤
+    </p>
+    <a href="#" class="button">Forgive Me?</a>
+  </div>
+
+  <script>
+    // Countdown timer
+    const startDate = new Date("August 10, 2025 20:00:00").getTime();
+    setInterval(function() {
+      let now = new Date().getTime();
+      let distance = now - startDate;
+
+      let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("time").innerHTML = 
+        days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+    }, 1000);
+
+    // Days missed counter
+    const lastSeenDate = new Date("August 14, 2025"); // Date of the fight
+    function updateMissedDays() {
+      const now = new Date();
+      const diffTime = now - lastSeenDate;
+      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+      document.getElementById("missed-days").textContent = diffDays;
+    }
+    updateMissedDays();
+    setInterval(updateMissedDays, 3600000); // updates every hour
+
+    // Music control
+    const music = document.getElementById("bg-music");
+    function toggleMusic() {
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
+    }
+
+    // Heart animation on button click
+    const button = document.querySelector('.button');
+
+    button.addEventListener('click', function(e) {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = e.clientX + 'px';
+      heart.style.top = e.clientY + 'px';
+      heart.textContent = '❤';
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 1500);
+    });
+  </script>
+
+</body>
+</html>
